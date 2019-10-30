@@ -1,0 +1,19 @@
+﻿@model Vidly.ViewModels.CustomerViewModel
+
+@{
+    ViewBag.Title = Model.Customer.Name;
+}
+
+<h2>@Model.Customer.Name</h2>
+
+<ul>
+    @if (Model.Customer.DateOfBirth != null)
+    {
+        <li>Date of Birth: @Model.Customer.DateOfBirth.Value.ToString("d")</li>
+    }
+
+    <li>Subscribed to Newsletter: @Model.Customer.IsSubScribedToNewsLetter</li>
+    <li>Membership Type: @Model.Customer.MembershipType.Name</li>
+    
+    
+</ul>

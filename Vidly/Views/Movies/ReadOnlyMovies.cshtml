@@ -1,0 +1,61 @@
+﻿@*@model Vidly.ViewModels.MovieViewModel*@
+
+@{
+    ViewBag.Title = "Movies";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+
+@*@if (Model.Movies.Count() == 0)
+    {
+        <h2>No Movies</h2>
+    }
+    else
+    {*@
+<table class="table table-striped table-hover table-bordered" id="movies">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Genre</th>
+            
+        </tr>
+
+    </thead>
+    <tbody>
+        @*@foreach (var i in Model.Movies)
+            {
+                <tr>
+                    <td>
+                        <a href="/Movies/EditMovie/@i.Id">@i.Name</a>
+                    </td>
+                    <td>@i.Genre.Name</td>
+                </tr>
+            }*@
+    </tbody>
+</table>
+@*}*@
+@section scripts
+{
+    <script>
+        $(document).ready(() => {
+            var table = $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "genre.name",
+                    }
+                ]
+            });            
+        
+         });
+
+    </script>
+}
